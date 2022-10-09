@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  name: String!
+  email: String!
+}
+
+type Domain {
+  id: Int!
+  name: String!
+  tags: String
+}
+
+type Record {
+  id: Int!
+  caption: String!
+  url: String!
+  domainId: Int!
+}
+
+type Query {
+  users: [User!]!
+  user(id: Int!): User!
+  domains: [Domain!]!
+  domain(id: Int!): Domain!
+  records: [Record!]!
+  record(id: Int!): Record!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  removeUser(id: Int!): User!
+  createDomain(createDomainInput: CreateDomainInput!): Domain!
+  removeDomain(id: Int!): Domain!
+  createRecord(createRecordInput: CreateRecordInput!): Record!
+  removeRecord(id: Int!): Record!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+}
+
+input CreateDomainInput {
+  name: String!
+  tags: String
+}
+
+input CreateRecordInput {
+  caption: String!
+  url: String!
+  domainId: Int!
+}
