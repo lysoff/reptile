@@ -1,5 +1,6 @@
+import { Domain } from './../../domains/entities/domain.entity';
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 @Entity()
@@ -19,4 +20,8 @@ export class Record {
   @Field(() => Int)
   @Column()
   domainId: number;
+
+  @Field(() => Domain)
+  @ManyToOne(() => Domain, (domain) => domain.records)
+  domain: Domain;
 }

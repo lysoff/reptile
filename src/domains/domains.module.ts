@@ -8,5 +8,6 @@ import { DomainsResolver } from './domains.resolver';
 @Module({
   imports: [TypeOrmModule.forFeature([Domain]), RecordsModule],
   providers: [DomainsResolver, DomainsService],
+  exports: [DomainsService],
 })
 export class DomainsModule {}

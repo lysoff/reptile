@@ -27,6 +27,14 @@ export class DomainsService {
     });
   }
 
+  async findByUserId(userId: number): Promise<Domain[]> {
+    return this.domainsRepository.find({
+      where: {
+        userId,
+      },
+    });
+  }
+
   remove(id: number) {
     return `This action removes a #${id} domain`;
   }

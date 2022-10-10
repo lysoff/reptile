@@ -1,4 +1,4 @@
-import { InputType, Field } from '@nestjs/graphql';
+import { InputType, Field, Int } from '@nestjs/graphql';
 
 @InputType()
 export class CreateDomainInput {
@@ -7,4 +7,7 @@ export class CreateDomainInput {
 
   @Field({ nullable: true })
   tags: string;
+
+  @Field(() => Int)
+  userId: number;
 }

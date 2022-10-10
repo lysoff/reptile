@@ -6,6 +6,16 @@ type User {
   id: Int!
   name: String!
   email: String!
+  domains: [Domain!]!
+}
+
+type Domain {
+  id: Int!
+  name: String!
+  tags: String
+  userId: Int!
+  user: User!
+  records: [Record!]!
 }
 
 type Record {
@@ -13,13 +23,7 @@ type Record {
   caption: String!
   url: String!
   domainId: Int!
-}
-
-type Domain {
-  id: Int!
-  name: String!
-  tags: String
-  records: [Record!]!
+  domain: Domain!
 }
 
 type Query {
@@ -48,6 +52,7 @@ input CreateUserInput {
 input CreateDomainInput {
   name: String!
   tags: String
+  userId: Int!
 }
 
 input CreateRecordInput {
