@@ -7,5 +7,6 @@ import { RecordsResolver } from './records.resolver';
 @Module({
   imports: [TypeOrmModule.forFeature([Record])],
   providers: [RecordsResolver, RecordsService],
+  exports: [RecordsService],
 })
 export class RecordsModule {}

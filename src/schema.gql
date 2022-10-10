@@ -8,17 +8,18 @@ type User {
   email: String!
 }
 
-type Domain {
-  id: Int!
-  name: String!
-  tags: String
-}
-
 type Record {
   id: Int!
   caption: String!
   url: String!
   domainId: Int!
+}
+
+type Domain {
+  id: Int!
+  name: String!
+  tags: String
+  records: [Record!]!
 }
 
 type Query {

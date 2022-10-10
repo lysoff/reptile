@@ -1,11 +1,24 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { RecordsService } from './../records/records.service';
+import { Record } from './../records/entities/record.entity';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { DomainsService } from './domains.service';
 import { Domain } from './entities/domain.entity';
 import { CreateDomainInput } from './dto/create-domain.input';
 
 @Resolver(() => Domain)
 export class DomainsResolver {
-  constructor(private readonly domainsService: DomainsService) {}
+  constructor(
+    private readonly domainsService: DomainsService,
+    private recordsService: RecordsService,
+  ) {}
 
   @Mutation(() => Domain)
   createDomain(
@@ -27,5 +40,10 @@ export class DomainsResolver {
   @Mutation(() => Domain)
   removeDomain(@Args('id', { type: () => Int }) id: number) {
     return this.domainsService.remove(id);
+  }
+
+  @ResolveField(() => [Record], { name: 'records' })
+  getRecords(@Parent() domain: Domain): Promise<Record[]> {
+    return this.recordsService.findByDomainId(domain.id);
   }
 }

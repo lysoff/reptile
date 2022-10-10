@@ -27,6 +27,14 @@ export class RecordsService {
     });
   }
 
+  async findByDomainId(domainId: number): Promise<Record[]> {
+    return this.recordsRepository.find({
+      where: {
+        domainId,
+      },
+    });
+  }
+
   remove(id: number) {
     return `This action removes a #${id} record`;
   }
